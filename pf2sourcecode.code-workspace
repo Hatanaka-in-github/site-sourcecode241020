@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "../pf2sourcecode"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.ignoreFiles": [
+			".vscode/**",
+			"**/*.scss",
+			"**/*.sass",
+			"**/*.ts"
+		]
+	}
+}

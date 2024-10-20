@@ -1,0 +1,6 @@
+{
+    "require": {
+        "box/spout": "^3.3",
+        "aws/aws-sdk-php": "^3.280"
+    }
+}
