@@ -487,7 +487,7 @@ if(isset($_POST['自工程']))
 
                   $bb = $db->SelectSumAll("SELECT SUM(数量) FROM process_progress WHERE exe_flg = 0 and 管理番号 = '{$AdminNum}' and 受工程 = '{$ToProcess}' and 品名 = '{$PName}' ;" );
                    if(empty($bb[0])){echo "0"; $bb = 0;}else{foreach($bb[0] as $key => $val2){ $bb = $val2 ; };};
-                 if($aa == $bb){$db->QuerySql("UPDATE IOSchedule SET exe_flg = 1 where exe_flg = 0 and 管理番号 = '{$AdminNum}' and 品名 = '{$PName}' ;");};
+                 if($aa == $bb){$db->QuerySql("UPDATE IOSchedule SET exe_flg = 3 where exe_flg = 0 and 管理番号 = '{$AdminNum}' and 品名 = '{$PName}' ;");};
 
                 }catch(PDOException $e) {
                         echo '<br><br>function.php:278〜283_処理に失敗しました。管理者にお問合せ下さい。<br><br>';
