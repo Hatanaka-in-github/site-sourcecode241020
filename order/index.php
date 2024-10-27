@@ -132,8 +132,8 @@
                      <label list="list">ステータス</label>
                         <input class="form-control"  name="OrderStatus" list="keywords2" autocomplete="off" required/>
                         <datalist id="keywords2">
-                        <option value="調整中">
-                        <option value="予定">
+                        <option value="1_調整中">
+                        <option value="0_予定">
                         </datalist>
                    </div>
                   <div class="form-group">

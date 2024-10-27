@@ -1177,7 +1177,87 @@ echo $e->getMessage();
                 <input type="submit" value = "検索結果をダウンロード" />
                 </form>
                 </div><?php
-            }; 
+            }; ?>
+
+
+<input id="TAB-13" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-13"><?php echo '受注一覧';?></label>
+<div class="tab-content">
+<div class="table-responsive">
+<table class="table bg-info text-nowrap">
+      <thead>
+      <tr>
+      <th scope="col">レコードID</th>
+      <th scope="col">入出庫日</th>
+      <th scope="col">入力日</th>
+      <th scope="col">管理番号</th>
+      <th scope="col">依頼番号</th>
+      <th scope="col">品名</th>
+      <th scope="col">数量</th>
+      <th scope="col">担当者</th>
+      <th scope="col">入力者</th>
+      <th scope="col">備考</th>
+      <th scope="col">ステータス</th>
+      <th scope="col">更新者</th>
+      <th scope="col">更新日</th>
+      </tr>
+      </thead>
+<?php
+/* https://note.com/rik114/n/n6437200d7a89 */
+
+try{
+
+
+/* https://sukimanosukima.com/2021/07/23/php-17/ */
+$dsn = "mysql:dbname=$name;host=$hostphrase;charset=utf8mb4";
+$user = 'admin';
+$password =$pass;
+$dbh = new PDO($dsn,$user,$password);
+$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+$sql =  'SELECT * FROM IOSchedule WHERE exe_flg = 0 order by ステータス,入出庫日 asc';
+echo $sql;
+
+
+
+$stmt=$dbh->prepare($sql);
+$stmt->execute();
+while(1){
+      $rec = $stmt->fetch(PDO::FETCH_ASSOC);
+      if($rec==false) break;?>
+                      <tbody><?php
+                      if($rec['ステータス'] == "0_予定"){?><tr class ="table-warning"><?php }
+                      elseif($rec['ステータス'] == "1_調整中"){?><tr class ="table-info"><?php } ?>
+                      <input type="hidden" name="AUTO_ID3" value=<?php print $rec['AUTO_ID']; ?>  >
+                      <th scope="row"><?php print $rec['AUTO_ID']; ?></th>
+                         <td> <?php print $rec['入出庫日'];?></td>
+                         <td> <?php print $rec['入力日'];?></td>
+                         <td> <?php print $rec['管理番号'];?></td>
+                         <td> <?php print $rec['依頼番号'];?></td>
+                         <td> <?php print $rec['品名'];?></td>
+                         <td> <?php print $rec['数量'];?></td>
+                         <td> <?php print $rec['担当者'];?></td>
+                         <td> <?php print $rec['入力者'];?></td>
+                         <td> <?php print $rec['備考'];?></td>
+                         <td> <?php print $rec['ステータス'];?></td>
+                         <td> <?php print $rec['更新者'];?></td>
+                         <td> <?php print $rec['更新日'];?></td>
+                        </tr>
+                      </tbody>
+  <?php ; } ?>
+</table></div>
+
+<?php
+
+
+
+}catch(PDOException $e) {
+  echo '<br><br>searchform101.php:105〜115_処理に失敗しました。管理者にお問合せ下さい。<br><br>';
+  };
+
+
+
+
+?>
+</div>
                         
                                                 
                         
